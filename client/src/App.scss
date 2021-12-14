@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+$background-color: #f2f4f5;
+$outline-color: #000;
+$primary-color: #ff7600;
+
+body {
+  background: $background-color;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+p {
+  font-size: 18px;
+}
+
+hr {
+  border-top: 1px solid $outline-color;
+  opacity: 1;
+}
+
+table {
+  //   border: 1px solid red;
+  width: 100%;
+
+  td {
+    font-size: 18px;
+  }
+
+  td:last-child {
+    text-align: right;
+  }
+}
+
+#navbar {
+  position: fixed;
+  top: 0px;
+  height: 60px;
+  width: 100vw;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 15px;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+
+  #brand {
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 0px;
+  }
+
+  #account {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background: #f4f4f4;
+  }
+}
+
+.row {
+  margin: 0px;
+  padding: 15px;
+}
+
+.panel {
+  padding: 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  ul {
+    padding: 0px;
+  }
+  li {
+    list-style: none;
+  }
+
+  h3 {
+    margin: 0px;
+  }
+
+  p {
+    margin-bottom: 7px;
+  }
+  .primary-text {
+    text-align: right;
+  }
+
+  .btn {
+    float: right;
+    border: 2px solid;
+    border-radius: 7px;
+    padding: 0px 40px;
+    margin-top: 30px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.light {
+  background: white;
+}
+
+.dark {
+  background: black;
+  color: white;
+
+  hr {
+    border-color: white;
+  }
+}
+
+.primary-text {
+  font-size: 42px;
+  font-weight: bold;
+}
+
+#member-info-panel {
+  margin-top: 65px;
+}
+
+#consumption-panel {
+  p {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: right;
+
+    span {
+      font-weight: normal;
+      opacity: 0.5;
+    }
+  }
+}
+
+.progress-bar {
+  background: $primary-color;
+}
+
+#purchases-panel {
+  ul {
+    margin-top: 20px;
+    padding: 0px;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  .purchase-container {
+    height: 60px;
+    background: white;
+    align-items: center;
+    margin: 15px 0px;
+    padding: 0px 10px;
+    border-radius: 10px;
+
+    p {
+      margin-bottom: 0px;
+    }
+  }
+}

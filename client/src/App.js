@@ -1,6 +1,10 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import "./App.scss";
+import Navbar from "./components/navbar";
+import MemberInfoPanel from "./components/member-info-panel";
+import PointsPanel from "./components/points-panel";
+import ConsumptionPanel from "./components/consumption-panel";
+import PurchasesPanel from "./components/purchases-panel";
 
 function App() {
   const [data, setData] = React.useState(null);
@@ -13,10 +17,13 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
+      <Navbar />
+      <div className="conatiner row g-0">
+        <MemberInfoPanel />
+        <PointsPanel />
+        <ConsumptionPanel />
+        <PurchasesPanel />
+      </div>
     </div>
   );
 }
