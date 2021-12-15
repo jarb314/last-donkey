@@ -5,24 +5,38 @@ import MemberInfoPanel from "./components/member-info-panel";
 import PointsPanel from "./components/points-panel";
 import ConsumptionPanel from "./components/consumption-panel";
 import PurchasesPanel from "./components/purchases-panel";
+import { Counter } from "./counter/Counter";
 
 function App() {
-  const [data, setData] = React.useState(null);
+  // const [data, setData] = React.useState(null);
+  const [member, setMember] = React.useState({});
+  const [purchases, setPurchases] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("/api")
+    fetch("api/members/cn-0006")
       .then((res) => res.json())
-      .then((data) => setData(data.message));
+      .then((data) => {
+        setMember(data);
+      });
+  }, []);
+
+  React.useEffect(() => {
+    fetch("api/members/214/purchases")
+      .then((res) => res.json())
+      .then((data) => {
+        setPurchases(data);
+      });
   }, []);
 
   return (
     <div className="App">
       <Navbar />
       <div className="conatiner row g-0">
-        <MemberInfoPanel />
+        <MemberInfoPanel member={member} />
+        {/* <Counter /> */}
         <PointsPanel />
         <ConsumptionPanel />
-        <PurchasesPanel />
+        <PurchasesPanel purchases={purchases} />
       </div>
     </div>
   );

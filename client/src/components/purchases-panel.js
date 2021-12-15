@@ -1,27 +1,28 @@
-const purchases = [
-  {
-    ncf: "B0100004923",
-    date: "12/09/21",
-    amount: "$1,302.00",
-  },
-  {
-    ncf: "B0100004923",
-    date: "12/09/21",
-    amount: "$1,302.00",
-  },
-  {
-    ncf: "B0100004923",
-    date: "12/09/21",
-    amount: "$1,302.00",
-  },
-  {
-    ncf: "B0100004923",
-    date: "12/09/21",
-    amount: "$1,302.00",
-  },
-];
+// const purchases = [
+//   {
+//     ncf: "B0100004923",
+//     date: "12/09/21",
+//     amount: "$1,302.00",
+//   },
+//   {
+//     ncf: "B0100004923",
+//     date: "12/09/21",
+//     amount: "$1,302.00",
+//   },
+//   {
+//     ncf: "B0100004923",
+//     date: "12/09/21",
+//     amount: "$1,302.00",
+//   },
+//   {
+//     ncf: "B0100004923",
+//     date: "12/09/21",
+//     amount: "$1,302.00",
+//   },
+// ];
 
-function PurchasesPanel() {
+function PurchasesPanel(props) {
+  const purchases = [...props.purchases];
   return (
     <div id="purchases-panel">
       <h2>Historial de compra</h2>
@@ -29,7 +30,7 @@ function PurchasesPanel() {
         {purchases.map((p) => {
           return (
             <li>
-              <PurchaseRow ncf={p.ncf} date={p.date} amount={p.amount} />
+              <PurchaseRow ncf={p.number} date={p.date} amount={p.total} />
             </li>
           );
         })}

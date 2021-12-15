@@ -1,29 +1,31 @@
 import "../styles/containers.scss";
 
-const details = [
-  {
-    title: "Nombre Completo",
-    text: "Jose Angel Bautista",
-  },
-  {
-    title: "Código",
-    text: "CN-0093",
-  },
-  {
-    title: "Direccion",
-    text: "C/ Independencia #88, Sonador Bonao",
-  },
-  {
-    title: "Telefono",
-    text: "(809) 123-0943",
-  },
-  {
-    title: "Correo",
-    text: "joseangelb2371@gmail.com",
-  },
-];
+function MemberInfoPanel(props) {
+  const details = [
+    {
+      title: "Nombre Completo",
+      text: props.member["name"]
+        ? props.member["name"].replace(/\(CN-[0-9]+\)/, "")
+        : "- - -",
+    },
+    {
+      title: "Código",
+      text: props.member["code"] ?? "- - -",
+    },
+    {
+      title: "Direccion",
+      text: props.member["address"] ?? "- - -",
+    },
+    {
+      title: "Telefono",
+      text: props.member["phone"] ?? "- - -",
+    },
+    {
+      title: "Correo",
+      text: props.member["email"] ?? "- - -",
+    },
+  ];
 
-function MemberInfoPanel() {
   return (
     <div id="member-info-panel" className="panel light col-12">
       <h2>Informacion personal</h2>
