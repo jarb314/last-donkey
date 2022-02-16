@@ -5,9 +5,9 @@ function ConsumptionPanel() {
       <p>
         $758.45<span>/$1,500.00</span>
       </p>
-      <div class="progress">
+      <div className="progress">
         <div
-          class="progress-bar"
+          className="progress-bar"
           role="progressbar"
           style={{ width: "52%" }}
           aria-valuenow="52"

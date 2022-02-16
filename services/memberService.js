@@ -4,12 +4,12 @@ require("dotenv").config();
 const headers = {
   //   Authorization:
   //     "Basic cXVlc29qYS5uYXR1cmVAZ21haWwuY29tOjU5ZTMwOTdhZmU0OTYyNWUyOWYx",
-  Authorization: process.env.AUTHORIZATION,
+  Authorization: process.env.AUTHORIZATION
 };
 
 exports.getMembers = async () => {
   return await fetch("https://api.alegra.com/api/v1/contacts/?name=CN-", {
-    headers: headers,
+    headers: headers
   })
     .then((res) => res.json())
     .then((json) => {
@@ -21,7 +21,7 @@ exports.getMembers = async () => {
             name: item["name"],
             address: item["address"]["description"],
             phone: item["phonePrimary"],
-            email: item["email"],
+            email: item["email"]
           };
         })
         .sort((a, b) => {
@@ -43,10 +43,11 @@ exports.getMembers = async () => {
 
 exports.getMemberByCode = async (code) => {
   return await fetch("https://api.alegra.com/api/v1/contacts/?name=" + code, {
-    headers: headers,
+    headers: headers
   })
     .then((res) => res.json())
     .then((json) => {
+      console.log(json);
       data = json.map((item) => {
         return {
           id: item["id"],
@@ -54,10 +55,10 @@ exports.getMemberByCode = async (code) => {
           name: item["name"],
           address: item["address"]["description"],
           phone: item["phonePrimary"],
-          email: item["email"],
+          email: item["email"]
         };
       });
-      console.log(data[0]);
+      // console.log(data[0]);
       return data[0];
     });
 };

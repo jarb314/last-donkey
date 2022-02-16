@@ -6,34 +6,34 @@ function MemberInfoPanel(props) {
       title: "Nombre Completo",
       text: props.member["name"]
         ? props.member["name"].replace(/\(CN-[0-9]+\)/, "")
-        : "- - -",
+        : "- - -"
     },
     {
       title: "Código",
-      text: props.member["code"] ?? "- - -",
+      text: props.member["code"] ?? "- - -"
     },
     {
       title: "Direccion",
-      text: props.member["address"] ?? "- - -",
+      text: props.member["address"] ?? "- - -"
     },
     {
       title: "Telefono",
-      text: props.member["phone"] ?? "- - -",
+      text: props.member["phone"] ?? "- - -"
     },
     {
       title: "Correo",
-      text: props.member["email"] ?? "- - -",
-    },
+      text: props.member["email"] ?? "- - -"
+    }
   ];
 
   return (
     <div id="member-info-panel" className="panel light col-12">
-      <h2>Informacion personal</h2>
+      <h2>Información personal</h2>
       <hr />
       <ul>
-        {details.map((d) => {
+        {details.map((d, index) => {
           return (
-            <li>
+            <li key={index}>
               <TitleText title={d.title} text={d.text} />{" "}
             </li>
           );

@@ -1,3 +1,5 @@
+import { currencyFormatter, dateFormatter } from "../util/main";
+
 // const purchases = [
 //   {
 //     ncf: "B0100004923",
@@ -27,9 +29,9 @@ function PurchasesPanel(props) {
     <div id="purchases-panel">
       <h2>Historial de compra</h2>
       <ul>
-        {purchases.map((p) => {
+        {purchases.map((p, i) => {
           return (
-            <li>
+            <li key={i}>
               <PurchaseRow ncf={p.number} date={p.date} amount={p.total} />
             </li>
           );
@@ -42,9 +44,9 @@ function PurchasesPanel(props) {
 function PurchaseRow(props) {
   return (
     <div className="purchase-container d-flex">
-      <p className="w-50">{props.ncf}</p>
-      <p className="w-25">{props.date}</p>
-      <p className="w-25">{props.amount}</p>
+      <p className="w-100">{props.ncf}</p>
+      <p className="w-100">{dateFormatter(props.date)}</p>
+      <p className="w-100 text-right">{currencyFormatter(props.amount)}</p>
     </div>
   );
 }
