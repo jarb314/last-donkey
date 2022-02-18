@@ -21,7 +21,6 @@ exports.getNewCode = () => {
     .then((member) => {
       let code = parseInt(member[0].code.replace("CN-", "")) + 1;
       return `CN-${String(code).padStart(4, "0")}`;
-      //   return member;
     })
     .catch((err) => {
       return {

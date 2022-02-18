@@ -3,10 +3,6 @@ const fetch = require("node-fetch");
 const axios = require("axios").default;
 require("dotenv").config();
 
-// const headers = {
-//   Authorization: process.env.AUTHORIZATION
-// };
-
 axios.defaults.headers.common["Authorization"] = process.env.AUTHORIZATION;
 
 exports.createMember = async (member) => {
