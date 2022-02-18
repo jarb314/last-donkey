@@ -1,11 +1,9 @@
 const fetch = require("node-fetch");
-const memberService = require("../services/memberService");
+const memberService = require("./member.api.service");
 require("dotenv").config();
 
 const headers = {
-  // Authorization:
-  //   "Basic cXVlc29qYS5uYXR1cmVAZ21haWwuY29tOjU5ZTMwOTdhZmU0OTYyNWUyOWYx",
-  Authorization: process.env.AUTHORIZATION,
+  Authorization: process.env.AUTHORIZATION
 };
 
 exports.getPurchases = async () => {
@@ -32,7 +30,7 @@ exports.getMemeberPurchases = async (id) => {
   let data = await fetch(
     "https://api.alegra.com/api/v1/invoices/?client_id=" + id,
     {
-      headers: headers,
+      headers: headers
     }
   )
     .then((res) => res.json())
@@ -43,7 +41,7 @@ exports.getMemeberPurchases = async (id) => {
           date: item["date"],
           client: item["client"]["name"],
           number: item["numberTemplate"]["fullNumber"],
-          total: item["total"],
+          total: item["total"]
         };
       });
       return data;
