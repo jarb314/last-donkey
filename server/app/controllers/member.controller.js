@@ -3,9 +3,17 @@ const purchaseAPIService = require("../services/purchase.api.service");
 const memberService = require("../services/member.db.service");
 const db = require("../models");
 const Member = db.members;
+const { body, validationResult } = require("express-validator");
 
 // create new member
 exports.create = async (req, res) => {
+  const errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
+
+  if (!errors.isEmpty()) {
+    res.status(422).json({ errors: errors.array() });
+    return;
+  }
+
   const data = req.body;
 
   if (req.query.dbOnly == "true") {
@@ -57,4 +65,20 @@ exports.getMemberPurchases = (req, res) => {
   purchaseAPIService.getMemeberPurchases(req.params["id"]).then((data) => {
     res.json(data);
   });
+};
+
+// validator
+exports.validate = (method) => {
+  switch (method) {
+    case "createMember": {
+      return [
+        body("code").optional(),
+        body("name", `Name doesn't exists`).exists(),
+        body("alegraId").optional(),
+        body("email", "Invalid email").optional().isEmail(),
+        body("address", "Address dosen't exists").exists(),
+        body("phone").optional().isInt()
+      ];
+    }
+  }
 };
