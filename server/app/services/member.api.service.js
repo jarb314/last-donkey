@@ -1,17 +1,18 @@
 const fetch = require("node-fetch");
+const axios = require("axios").default;
 require("dotenv").config();
 
-const headers = {
-  Authorization: process.env.AUTHORIZATION
-};
+// const headers = {
+//   Authorization: process.env.AUTHORIZATION
+// };
+
+axios.defaults.headers.common["Authorization"] = process.env.AUTHORIZATION;
 
 exports.getMembers = async () => {
-  return await fetch("https://api.alegra.com/api/v1/contacts/?name=CN-", {
-    headers: headers
-  })
-    .then((res) => res.json())
-    .then((json) => {
-      data = json
+  return axios
+    .get("https://api.alegra.com/api/v1/contacts/?name=CN-")
+    .then(function (response) {
+      data = response["data"]
         .map((item) => {
           return {
             id: item["id"],
@@ -31,31 +32,37 @@ exports.getMembers = async () => {
           if (codeA > codeB) {
             return 1;
           }
-
           // names must be equal
           return 0;
         });
       return data;
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
     });
 };
 
 exports.getMemberByCode = async (code) => {
-  return await fetch("https://api.alegra.com/api/v1/contacts/?name=" + code, {
-    headers: headers
-  })
-    .then((res) => res.json())
-    .then((json) => {
-      console.log(json);
-      data = json.map((item) => {
-        return {
-          id: item["id"],
-          code: item["name"].match(/CN-[0-9]+/)[0],
-          name: item["name"],
-          address: item["address"]["description"],
-          phone: item["phonePrimary"],
-          email: item["email"]
-        };
-      });
+  return axios
+    .get("https://api.alegra.com/api/v1/contacts/?name=" + code)
+    .then(function (response) {
+      // console.log(response);
+      data = response["data"]
+        .map((item) => {
+          return {
+            id: item["id"],
+            code: item["name"].match(/CN-[0-9]+/)[0],
+            name: item["name"],
+            address: item["address"]["description"],
+            phone: item["phonePrimary"],
+            email: item["email"]
+          };
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
       // console.log(data[0]);
       return data[0];
     });
