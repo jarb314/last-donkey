@@ -2,19 +2,33 @@ const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
 const Role = db.role;
+const Member = db.members;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+const { body } = require("express-validator");
 exports.signup = (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8)
   });
+  // save member ==================================
+  if (req.body.member) {
+    Member.find({ code: req.body.member }, (err, members) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      }
+      user.member = members[0]["id"];
+    });
+  }
+  // save user ==============================================
   user.save((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
       return;
     }
+    // save roles ===========================================
     if (req.body.roles) {
       Role.find(
         {
@@ -31,6 +45,7 @@ exports.signup = (req, res) => {
               res.status(500).send({ message: err });
               return;
             }
+
             res.send({ message: "User was registered successfully!" });
           });
         }
@@ -88,7 +103,21 @@ exports.signin = (req, res) => {
         username: user.username,
         email: user.email,
         roles: authorities,
+        member: user.member,
         accessToken: token
       });
     });
+};
+exports.validate = (method) => {
+  switch (method) {
+    case "signUp": {
+      return [
+        body("username", "Username doesn't exists").exists(),
+        body("email", "Invalid email").optional().isEmail(),
+        body("password", `password doesn't exists`).exists(),
+        body("roles").exists().isArray(),
+        body("member").optional().isString()
+      ];
+    }
+  }
 };
