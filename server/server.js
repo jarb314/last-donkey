@@ -16,6 +16,7 @@ app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 // connect to mongoDb
 const db = require("./app/models");
+const Role = db.role;
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,
