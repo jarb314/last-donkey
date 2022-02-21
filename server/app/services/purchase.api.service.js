@@ -51,7 +51,6 @@ exports.getMemeberPurchases = async (id) => {
         var date = new Date();
         var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
         var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-        // const date = Date.parse(el.date);
         return el.date > firstDay && el.date < lastDay;
       });
       const monthConsumpsion =
@@ -60,13 +59,13 @@ exports.getMemeberPurchases = async (id) => {
           : purchaseOfTheMonth
               .map((el) => el.total)
               .reduce((a, b) => {
-                // console.log({ a: a, b: b });
                 return a + b;
               });
 
       // get points
-      const points =
-        purchases.map((el) => el.total).reduce((a, b) => a + b) * 0.03;
+      const points = Math.round(
+        purchases.map((el) => el.total).reduce((a, b) => a + b) * 0.03
+      );
 
       return {
         monthConsumpsion: monthConsumpsion,
