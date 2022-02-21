@@ -35,16 +35,44 @@ exports.getMemeberPurchases = async (id) => {
   )
     .then((res) => res.json())
     .then((json) => {
-      const data = json.map((item) => {
+      // get purchases
+      const purchases = json.map((item) => {
         return {
           id: item["id"],
-          date: item["date"],
+          date: new Date(item["date"]),
           client: item["client"]["name"],
           number: item["numberTemplate"]["fullNumber"],
           total: item["total"]
         };
       });
-      return data;
+
+      // get month consumpsion
+      let purchaseOfTheMonth = purchases.filter((el) => {
+        var date = new Date();
+        var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        // const date = Date.parse(el.date);
+        return el.date > firstDay && el.date < lastDay;
+      });
+      const monthConsumpsion =
+        purchaseOfTheMonth.length == 0
+          ? 0
+          : purchaseOfTheMonth
+              .map((el) => el.total)
+              .reduce((a, b) => {
+                // console.log({ a: a, b: b });
+                return a + b;
+              });
+
+      // get points
+      const points =
+        purchases.map((el) => el.total).reduce((a, b) => a + b) * 0.03;
+
+      return {
+        monthConsumpsion: monthConsumpsion,
+        points: points,
+        purchases: purchases
+      };
     });
   return data;
 };
