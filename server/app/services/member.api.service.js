@@ -65,7 +65,7 @@ exports.getMemberByCode = async (code) => {
   return axios
     .get("https://api.alegra.com/api/v1/contacts/?name=" + code)
     .then(function (response) {
-      console.log(response["data"]);
+      // console.log(response["data"]);
       data = response["data"].map((item) => {
         return {
           id: item["id"],
