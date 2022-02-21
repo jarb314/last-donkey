@@ -63,6 +63,8 @@ function initial() {
 
 require("./app/routes/member.routes")(app);
 require("./app/routes/purchase.routes")(app);
+require("./app/routes/auth.routes")(app);
+require("./app/routes/user.routes")(app);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../../client/build", "index.html"));
