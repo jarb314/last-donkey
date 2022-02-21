@@ -11,5 +11,5 @@ module.exports = (app) => {
 
   app.get("/api/members/:code", memberController.getByCode);
 
-  app.get("/api/members/:id/purchases", memberController.getMemberPurchases);
+  // app.get("/api/members/:id/purchases", memberController.getMemberPurchases);
 };
