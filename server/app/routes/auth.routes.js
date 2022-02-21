@@ -10,9 +10,11 @@ module.exports = function (app) {
   });
   app.post(
     "/api/auth/signup",
+    controller.validate("signUp"),
     [
       verifySignUp.checkDuplicateUsernameOrEmail,
-      verifySignUp.checkRolesExisted
+      verifySignUp.checkRolesExisted,
+      verifySignUp.validateSignUp
     ],
     controller.signup
   );
