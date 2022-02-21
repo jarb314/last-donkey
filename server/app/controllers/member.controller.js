@@ -8,9 +8,11 @@ const { body, validationResult } = require("express-validator");
 // create new member
 exports.create = async (req, res) => {
   // Validate request
-  const errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
+  const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    res.status(422).json({ errors: errors.array() });
+    res
+      .status(422)
+      .json({ message: "Validation error", errors: errors.array() });
     return;
   }
 
@@ -57,18 +59,24 @@ exports.getAll = (req, res) => {
 };
 
 // get member by code
-exports.getByCode = (req, res) => {
-  memberAPIService.getMemberByCode(req.params["code"]).then((data) => {
-    res.json(data);
-  });
+exports.getByCode = async (req, res) => {
+  let data = await memberAPIService.getMemberByCode(req.params["code"]);
+  if (!data) {
+    res.status(404).json({ message: "Member not found" });
+  }
+  let purchases = await purchaseAPIService.getMemeberPurchases(data["id"]);
+  data["points"] = purchases["points"];
+  data["monthConsumpsion"] = purchases["monthConsumpsion"];
+  data["purchases"] = purchases["purchases"];
+  res.json(data);
 };
 
 // get member purchases
-exports.getMemberPurchases = (req, res) => {
-  purchaseAPIService.getMemeberPurchases(req.params["id"]).then((data) => {
-    res.json(data);
-  });
-};
+// exports.getMemberPurchases = (req, res) => {
+//   purchaseAPIService.getMemeberPurchases(req.params["id"]).then((data) => {
+//     res.json(data);
+//   });
+// };
 
 // validator
 exports.validate = (method) => {
