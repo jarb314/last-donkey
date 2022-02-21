@@ -10,7 +10,11 @@ const User = mongoose.model(
         type: mongoose.Schema.Types.ObjectId,
         ref: "Role"
       }
-    ]
+    ],
+    member: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Member"
+    }
   })
 );
 module.exports = User;
