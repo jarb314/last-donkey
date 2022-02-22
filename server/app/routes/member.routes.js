@@ -8,6 +8,7 @@ module.exports = (app) => {
     );
     next();
   });
+
   app.post(
     "/api/members",
     memberController.validate("createMember"),
