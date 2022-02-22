@@ -11,18 +11,18 @@ exports.getPurchases = async () => {
     .getMembers()
     .then((data) => data.map((member) => member.id))
     .then(async (members) => {
-      var purchases = [];
+      let purchases = [];
       await Promise.all(
         members.map(async (m) => {
           await this.getMemeberPurchases(m).then((data) => {
-            purchases.push(...data);
+            purchases.push(...data["purchases"]);
           });
         })
       );
       return purchases.sort((a, b) => new Date(a.date) - new Date(b.date));
     })
-    .then((data) => {
-      return data;
+    .catch((err) => {
+      console.log(err);
     });
 };
 
@@ -35,14 +35,20 @@ exports.getMemeberPurchases = async (id) => {
   )
     .then((res) => res.json())
     .then((json) => {
-      // get purchases
       const purchases = json.map((item) => {
         return {
           id: item["id"],
           date: new Date(item["date"]),
           client: item["client"]["name"],
           number: item["numberTemplate"]["fullNumber"],
-          total: item["total"]
+          total: item["total"],
+          seller:
+            item["seller"] != null
+              ? {
+                  id: item["seller"]["id"],
+                  name: item["seller"]["name"]
+                }
+              : {}
         };
       });
 
