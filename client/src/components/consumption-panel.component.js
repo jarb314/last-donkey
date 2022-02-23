@@ -1,17 +1,23 @@
+import { currencyFormatter } from "../util";
+
 function ConsumptionPanel(props) {
+  const { consumption } = props;
+  const min = 1500;
+  const percent = Math.abs(((min - consumption) / min) * 100 - 100);
+  console.log(percent);
   return (
     <div id="consumption-panel" className="panel light">
       <h2>Consumo del mes</h2>
       <p>
-        ${props.consumption}
-        <span>/$1,500.00</span>
+        {currencyFormatter(props.consumption)}
+        <span>/{currencyFormatter(min)}</span>
       </p>
       <div className="progress">
         <div
           className="progress-bar"
           role="progressbar"
-          style={{ width: "52%" }}
-          aria-valuenow="52"
+          style={{ width: `${percent}%` }}
+          aria-valuenow={percent}
           aria-valuemin="0"
           aria-valuemax="100"
         ></div>
