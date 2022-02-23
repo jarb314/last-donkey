@@ -13,6 +13,7 @@ export const currencyFormatter = (value) => {
 };
 
 export const dateFormatter = (value) => {
-  var date = value.split("-");
-  return `${date[2]}/${date[1]}/${date[0]}`;
+  // var date = value.split("-");
+  // return `${date[2]}/${date[1]}/${date[0]}`;
+  return new Date(value).toLocaleDateString("es-ES");
 };

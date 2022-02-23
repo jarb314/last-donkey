@@ -1,28 +1,5 @@
 import { currencyFormatter, dateFormatter } from "../util";
 
-// const purchases = [
-//   {
-//     ncf: "B0100004923",
-//     date: "12/09/21",
-//     amount: "$1,302.00",
-//   },
-//   {
-//     ncf: "B0100004923",
-//     date: "12/09/21",
-//     amount: "$1,302.00",
-//   },
-//   {
-//     ncf: "B0100004923",
-//     date: "12/09/21",
-//     amount: "$1,302.00",
-//   },
-//   {
-//     ncf: "B0100004923",
-//     date: "12/09/21",
-//     amount: "$1,302.00",
-//   },
-// ];
-
 function PurchasesPanel(props) {
   const purchases = props.purchases != null ? [...props.purchases] : [];
   return (
