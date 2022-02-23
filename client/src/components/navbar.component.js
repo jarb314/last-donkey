@@ -1,5 +1,5 @@
 import { logOut } from "../services/auth.service";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function Navbar(props) {
   return (

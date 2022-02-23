@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/navbar.component";
 import MemberInfoPanel from "../components/member-info-panel.component";
 import PointsPanel from "../components/points-panel.component";
@@ -9,19 +9,19 @@ import { getCurrentUser } from "../services/auth.service";
 import { getMemberByCode } from "../services/member.service";
 
 function MemberView(props) {
+  const { code } = useParams();
   let navigate = useNavigate();
+
   React.useEffect(() => {
     let user = getCurrentUser();
     if (!user) {
       navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   const [member, setMember] = useState({});
   useEffect(() => {
-    let code = props.code || getCurrentUser().username;
-
-    getMemberByCode(code)
+    getMemberByCode(code || getCurrentUser().username)
       .then((response) => {
         console.log(response);
         setMember(response.data);
@@ -30,7 +30,7 @@ function MemberView(props) {
         console.log("Upps, an error");
         navigate("/404");
       });
-  }, []);
+  }, [code, navigate]);
 
   return (
     <div className="App">
