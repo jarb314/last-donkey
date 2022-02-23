@@ -1,8 +1,8 @@
-function PointsPanel() {
+function PointsPanel(props) {
   return (
     <div className="panel dark">
       <h2>Puntos acumulados</h2>
-      <p className="primary-text">783</p>
+      <p className="primary-text">{props.points}</p>
       <hr />
       <table>
         <tbody>

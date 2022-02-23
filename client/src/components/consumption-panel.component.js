@@ -1,9 +1,10 @@
-function ConsumptionPanel() {
+function ConsumptionPanel(props) {
   return (
     <div id="consumption-panel" className="panel light">
       <h2>Consumo del mes</h2>
       <p>
-        $758.45<span>/$1,500.00</span>
+        ${props.consumption}
+        <span>/$1,500.00</span>
       </p>
       <div className="progress">
         <div

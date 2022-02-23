@@ -3,6 +3,8 @@ import "../styles/index.scss";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import MemberView from "./MemberView.route";
 import Login from "./Login.route";
+import Home from "./Home.route";
+import NotFound from "./NotFound.route";
 
 function App() {
   const navigate = useNavigate();
@@ -10,27 +12,17 @@ function App() {
     let authToken = sessionStorage.getItem("Auth Token");
 
     if (authToken) {
-      navigate("/member-view");
+      navigate("/memberview");
     }
   });
-
-  const member = {
-    id: "209",
-    code: "CN-0003",
-    name: "Dorcas Carmona (CN-0003)",
-    address: "c/ Telésforo Jaime #19 Bayona. Frente a la farmacia Nokaury",
-    phone: "8295744171",
-    email: "dorkacarmonajaimedepena@gmail.com"
-  };
-
-  // const [member, setMember] = React.useState({});
-  // React.useEffect();
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/member-view" element={<MemberView member={member} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/memberview" element={<MemberView />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/404" element={<NotFound />} />
       </Routes>
     </div>
   );

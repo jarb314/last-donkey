@@ -20,6 +20,9 @@ export const signIn = async (username, password) => {
       throw new Error(message);
     });
 };
+export const logOut = () => {
+  localStorage.removeItem("user");
+};
 export const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };

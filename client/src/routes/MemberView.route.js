@@ -19,20 +19,26 @@ function MemberView(props) {
 
   const [member, setMember] = useState({});
   useEffect(() => {
-    const code = props.member["code"];
-    getMemberByCode(code).then((response) => {
-      console.log(response);
-      setMember(response.data);
-    });
+    let code = props.code || getCurrentUser().username;
+
+    getMemberByCode(code)
+      .then((response) => {
+        console.log(response);
+        setMember(response.data);
+      })
+      .catch((err) => {
+        console.log("Upps, an error");
+        navigate("/404");
+      });
   }, []);
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar title="Membresía" />
       <div className="conatiner row g-0">
         <MemberInfoPanel member={member} />
-        <PointsPanel />
-        <ConsumptionPanel />
+        <PointsPanel points={member.points} />
+        <ConsumptionPanel consumption={member.monthConsumpsion} />
         <PurchasesPanel purchases={member["purchases"]} />
       </div>
     </div>
