@@ -17,7 +17,7 @@ export default function Login() {
         console.log(response);
         console.log("Loged");
         if (response.roles.includes("ROLE_USER")) {
-          navigate("/memberview", { code: "cn-0007" });
+          navigate("/member/" + response.username);
         } else if (response.roles.includes("ROLE_ADMIN")) {
           navigate("/");
         }
@@ -33,11 +33,11 @@ export default function Login() {
     if (user) {
       navigate("/memberview");
     }
-  }, []);
+  }, [navigate]);
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div id="login-container">
+      <h1>Club Nature</h1>
       <ToastContainer />
       <Form
         setEmail={setEmail}

@@ -9,34 +9,33 @@ export default function BasicTextFields({
   handleAction
 }) {
   return (
-    <div>
-      <div className="heading-container">
-        <h3>Login Form</h3>
-      </div>
+    <Box
+      className="form-container"
+      component="form"
+      sx={{
+        "& > :not(style)": { m: 1 }
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField
+        id="email"
+        label="Enter the Email"
+        fullWidth
+        required
+        variant="outlined"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <TextField
+        id="password"
+        fullWidth
+        required
+        label="Enter the Password"
+        variant="outlined"
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
-      <Box
-        component="form"
-        sx={{
-          "& > :not(style)": { m: 1, width: "25ch" }
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField
-          id="email"
-          label="Enter the Email"
-          variant="outlined"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          id="password"
-          label="Enter the Password"
-          variant="outlined"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </Box>
-
-      <Button handleAction={handleAction} />
-    </div>
+      <Button handleAction={handleAction} text="Inicia Sesión" />
+    </Box>
   );
 }
