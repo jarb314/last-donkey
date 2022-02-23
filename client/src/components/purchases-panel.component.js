@@ -1,4 +1,4 @@
-import { currencyFormatter, dateFormatter } from "../util/main";
+import { currencyFormatter, dateFormatter } from "../util";
 
 // const purchases = [
 //   {
@@ -24,7 +24,7 @@ import { currencyFormatter, dateFormatter } from "../util/main";
 // ];
 
 function PurchasesPanel(props) {
-  const purchases = [...props.purchases];
+  const purchases = props.purchases != null ? [...props.purchases] : [];
   return (
     <div id="purchases-panel">
       <h2>Historial de compra</h2>

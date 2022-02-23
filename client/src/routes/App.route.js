@@ -1,8 +1,8 @@
 import React from "react";
-import "../App.scss";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import MemberView from "./MemberView";
-import Login from "./Login";
+import "../styles/index.scss";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import MemberView from "./MemberView.route";
+import Login from "./Login.route";
 
 function App() {
   const navigate = useNavigate();
@@ -28,12 +28,10 @@ function App() {
 
   return (
     <div className="App">
-      <>
-        <Routes>
-          <Route path="/member-view" element={<MemberView member={member} />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </>
+      <Routes>
+        <Route path="/member-view" element={<MemberView member={member} />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </div>
   );
 }

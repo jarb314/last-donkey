@@ -1,12 +1,16 @@
+require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const fetch = require("node-fetch");
 const bodyParser = require("body-parser");
-require("dotenv").config();
+const cors = require("cors");
+const app = express();
+var corsOptions = {
+  origin: "http://localhost:3000"
+};
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 4000;
-
-const app = express();
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
