@@ -31,7 +31,11 @@ export default function Login() {
   React.useEffect(() => {
     let user = getCurrentUser();
     if (user) {
-      navigate("/memberview");
+      if (user.roles.includes("ROLE_USER")) {
+        navigate("/member/" + user.username);
+      } else if (user.roles.includes("ROLE_ADMIN")) {
+        navigate("/");
+      }
     }
   }, [navigate]);
 
