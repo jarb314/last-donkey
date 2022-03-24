@@ -1,5 +1,3 @@
-import "../styles/containers.scss";
-
 function MemberInfoPanel(props) {
   const details = [
     {
