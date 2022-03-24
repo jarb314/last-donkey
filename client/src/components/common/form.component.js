@@ -30,6 +30,7 @@ export default function BasicTextFields({
         id="password"
         fullWidth
         required
+        type="password"
         label="Enter the Password"
         variant="outlined"
         onChange={(e) => setPassword(e.target.value)}
