@@ -44,8 +44,10 @@ function Navbar(props) {
   const [isAdmin, setAdmin] = useState(false);
   useEffect(() => {
     let user = getCurrentUser();
-    if (user.roles.includes("ROLE_ADMIN")) {
-      setAdmin(true);
+    if (user) {
+      if (user.roles.includes("ROLE_ADMIN")) {
+        setAdmin(true);
+      }
     }
   }, []);
 
