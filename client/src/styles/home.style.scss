@@ -1,0 +1,61 @@
+#home {
+  position: relative;
+  padding: 10px;
+  // background: #f4f4f4;
+
+  #members-container {
+    position: relative;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 600px;
+
+    // .header {
+    //   background: #f4f4f4;
+    //   border-radius: 5px;
+    //   padding: 10px 15px;
+    //   margin-top: 15px;
+    // }
+    .member-btn {
+      padding: 0px;
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: none;
+      // border-bottom: solid 1px;
+      text-align: left;
+      background-color: white;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      border: solid 1px $outline-color;
+
+      .name {
+        text-overflow: ellipsis;
+        overflow: auto;
+        margin: 0px;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .actions {
+    position: relative;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    #search {
+      width: 250px;
+      margin-right: 15px;
+    }
+
+    #create-member-btn {
+      top: 0px;
+      right: 0px;
+      background-color: $blue;
+      text-transform: none;
+    }
+  }
+}

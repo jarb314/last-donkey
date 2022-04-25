@@ -35,7 +35,7 @@ exports.getMembers = async () => {
           return {
             id: item["id"],
             code: item["name"].match(/CN-[0-9]+/)[0],
-            name: item["name"],
+            name: item["name"].replace(/\(CN-[0-9]+\)/, ""),
             address: item["address"]["description"],
             phone: item["phonePrimary"],
             email: item["email"]

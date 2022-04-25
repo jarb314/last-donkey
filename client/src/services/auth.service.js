@@ -9,7 +9,7 @@ export const signIn = async (username, password) => {
     })
     .then(function (response) {
       if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
+        sessionStorage.setItem("user", JSON.stringify(response.data));
       }
       return response.data;
     })
@@ -21,10 +21,10 @@ export const signIn = async (username, password) => {
     });
 };
 export const logOut = () => {
-  localStorage.removeItem("user");
+  sessionStorage.removeItem("user");
 };
 export const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
+  return JSON.parse(sessionStorage.getItem("user"));
 };
 
 // export const authService = {
