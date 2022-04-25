@@ -5,6 +5,7 @@ import MemberView from "./MemberView.route";
 import Login from "./Login.route";
 import Home from "./Home.route";
 import NotFound from "./NotFound.route";
+import NewMember from "./NewMember.route";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/member/:code" element={<MemberView />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/member/add" element={<NewMember />} />
         <Route path="/404" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
